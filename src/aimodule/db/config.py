@@ -11,6 +11,12 @@ def make_data_source(db_info, db_name):
     Returns:
         str: data_source
     """
+    assert "id" in db_info
+    assert "ip" in db_info
+    assert "pwd" in db_info
+    assert "pwd" in db_info
+    assert db_name
+
     db_id = db_info["id"]
     password = db_info["pwd"]
     host = db_info["ip"]

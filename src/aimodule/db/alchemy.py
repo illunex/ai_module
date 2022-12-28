@@ -1,7 +1,7 @@
 import pandas as pd
 import pymysql
 import sqlalchemy
-from pshmodule.db.config import make_data_source
+from aimodule.db.config import make_data_source
 
 
 class DataSource:

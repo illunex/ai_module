@@ -42,7 +42,7 @@ def load(path: str = ""):
                 data = pd.DataFrame(data)
             print("Loaded {} records from {}".format(len(data), path))
         else:
-            raise print("The file does not exist.")
+            raise BaseException("The file does not exist.")
         return data
     except Exception as e:
         print(e)
@@ -84,9 +84,9 @@ def save(path: str, data):
                             json_record = json.dumps(line, ensure_ascii=False)
                             f.write(json_record + '\n')
                 else:
-                    raise print("DataFrame' columns name no have 'content' or 'label'")
+                    raise BaseException("DataFrame' columns name no have 'content' or 'label'")
             print("Saved {} records".format(len(data)))
         else:
-            raise print("file exists")
+            raise BaseException("file exists")
     except Exception as e:
         print(e)

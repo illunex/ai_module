@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "ai-module"
+version = "0.1.0"
+description = "ai working utility"
+authors = ["jaehokang <jhkang@illunex.com>"]
+readme = "README.md"
+packages = [{include = "ai_module"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sqlalchemy = "^1.4.45"
+openpyxl = "^3.0.10"
+webdriver-manager = "^3.8.5"
+selenium = "^4.7.2"
+pandas = "^1.5.2"
+pymysql = "^1.0.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.21.0"
+black = "^22.12.0"
+mypy = "^0.991"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
