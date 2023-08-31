@@ -6,7 +6,7 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 # pip3 install pshmodule test
-from pshmodule.utils import filemanager as fm
+from aimodule.utils import filemanager as fm
 
 # # 일반 testcd
 # from src.pshmodule.utils import filemanager as fm

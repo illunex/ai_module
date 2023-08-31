@@ -16,9 +16,9 @@ def date_to_str(str_date: str, portal: str) -> str:
             str_date = str_date[:19]
             str_date = datetime.datetime.strptime(str_date, "%Y-%m-%d %H:%M:%S")
         else:
-            str_date = datetime.datetime.strptime(
-                str_date, "%Y. %m. %d. %H:%M"
-            ).strftime("%Y-%m-%d %H:%M:%S")
+            str_date = datetime.datetime.strptime(str_date, "%Y. %m. %d. %H:%M").strftime(
+                "%Y-%m-%d %H:%M:%S"
+            )
     elif portal == "naver":
         if str_date == "" or str_date == " " or str_date is None:
             str_date = str(datetime.datetime.now())
@@ -27,23 +27,17 @@ def date_to_str(str_date: str, portal: str) -> str:
 
         elif str_date.endswith("일전"):
             datenum = str_date.replace("일전", "").replace(" ", "")
-            str_date = str(
-                datetime.datetime.now() - datetime.timedelta(days=int(datenum))
-            )
+            str_date = str(datetime.datetime.now() - datetime.timedelta(days=int(datenum)))
             str_date = str(str_date[:11]) + "00:00:00"
 
         elif str_date.endswith("시간전"):
             datenum = str_date.replace("시간전", "").replace(" ", "")
-            str_date = str(
-                datetime.datetime.now() - datetime.timedelta(hours=int(datenum))
-            )
+            str_date = str(datetime.datetime.now() - datetime.timedelta(hours=int(datenum)))
             str_date = str(str_date[:19])
 
         elif str_date.endswith("분전"):
             datenum = str_date.replace("분전", "").replace(" ", "")
-            str_date = str(
-                datetime.datetime.now() - datetime.timedelta(minutes=int(datenum))
-            )
+            str_date = str(datetime.datetime.now() - datetime.timedelta(minutes=int(datenum)))
             str_date = str(str_date[:19])
 
         else:
@@ -55,9 +49,9 @@ def date_to_str(str_date: str, portal: str) -> str:
                 .replace("오 전", "AM")
                 .replace("오 후", "PM")
             )
-            str_date = datetime.datetime.strptime(
-                str_date, "%Y.%m.%d. %p %I:%M"
-            ).strftime("%Y-%m-%d %H:%M:%S")
+            str_date = datetime.datetime.strptime(str_date, "%Y.%m.%d. %p %I:%M").strftime(
+                "%Y-%m-%d %H:%M:%S"
+            )
     return str(str_date)
 
 
@@ -73,14 +67,15 @@ def emoji_processing(content: str) -> str:
 
     emoji_pattern = re.compile(
         "["
-        u"\U0001F600-\U0001F64F"  # emoticons
-        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-        u"\U0001F680-\U0001F6FF"  # transport & map symbols
-        u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+        "\U0001F600-\U0001F64F"  # emoticons
+        "\U0001F300-\U0001F5FF"  # symbols & pictographs
+        "\U0001F680-\U0001F6FF"  # transport & map symbols
+        "\U0001F1E0-\U0001F1FF"  # flags (iOS)
         "]+",
         flags=re.UNICODE,
     )
-    content = emoji_pattern.sub(r"", str(content))  # no emoji
+    content = emoji_pattern.sub(r"", content)
+    # no emoji
 
     return content
 

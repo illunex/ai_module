@@ -1,7 +1,8 @@
+import typing as t
 from urllib.parse import quote
 
 
-def make_data_source(db_info, db_name):
+def make_data_source(db_info: t.Dict[str, t.Any], db_name: str):
     """
     Args:
         database_uri 생성 및 sqlalchemy engine 생성
@@ -14,7 +15,7 @@ def make_data_source(db_info, db_name):
     assert "id" in db_info
     assert "ip" in db_info
     assert "pwd" in db_info
-    assert "pwd" in db_info
+    assert "port" in db_info
     assert db_name
 
     db_id = db_info["id"]

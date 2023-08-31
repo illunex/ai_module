@@ -5,8 +5,8 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 # pip3 install pshmodule test
-from pshmodule.processing import processing as p
-from pshmodule.selenium import Helper
+from aimodule.processing import processing as p
+from aimodule.selenium import Helper
 
 # # 일반 test
 #import src.pshmodule.selenium as test

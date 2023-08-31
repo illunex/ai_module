@@ -1,12 +1,15 @@
 import os
 import sys
+from pathlib import Path
+cur_project_path= str(Path(__file__).parent.absolute().parent / 'src' )
 
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(cur_project_path)
+print(sys.path)
 
 # pip3 install pshmodule test
-from pshmodule.db import alchemy
+from aimodule.db import alchemy
 
-import db_config
+from aimodule.db import config as db_config
 
 ## 일반 test
 # from src.pshmodule.db import alchemy

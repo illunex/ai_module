@@ -4,6 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.common.by import By
 
 
 class Helper:
@@ -19,9 +20,7 @@ class Helper:
         chrome_options.add_argument("--disable-gpu-usage")
 
         # install driver
-        self.driver = webdriver.Chrome(
-            ChromeDriverManager().install(), options=chrome_options
-        )
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
         self.driver.set_page_load_timeout(page_timeout)
         try:
@@ -48,7 +47,7 @@ class Helper:
         tag_text = None
         try:
             self.driver.implicitly_wait(self.timeout)
-            tag_text = self.driver.find_element_by_xpath(xpath).text
+            tag_text = self.driver.find_element(By.XPATH, xpath).text
         except Exception as e:
             print(e)
         return tag_text
@@ -62,7 +61,7 @@ class Helper:
         """
         try:
             self.driver.implicitly_wait(self.timeout)
-            self.driver.find_element_by_xpath(xpath).click()
+            self.driver.find_element(By.XPATH, xpath).click()
         except Exception as e:
             print(e)
 
@@ -76,14 +75,17 @@ class Helper:
         p = re.compile(".+ol$|.+ul$")
         m = p.match(xpath)
         text_list = []
+        elements = []
         self.driver.implicitly_wait(self.timeout)
+
         try:
             if m:
-                for element in self.driver.find_elements_by_xpath(xpath + "/li"):
-                    text_list.append(element.text)
+                elements = self.driver.find_elements(By.XPATH, f"{xpath}/li")
             else:
-                for element in self.driver.find_elements_by_xpath(xpath):
-                    text_list.append(element.text)
+                elements = self.driver.find_elements(By.XPATH, xpath)
+
+            text_list = [element.text for element in elements]
+
         except Exception as e:
             print(e)
         return text_list
@@ -96,7 +98,7 @@ class Helper:
             void: None
         """
         try:
-            self.driver.execute_script("location.href='{}'".format(url))
+            self.driver.execute_script(f"location.href='{url}'")
         except Exception as e:
             print(e)
 
@@ -121,9 +123,7 @@ class Helper:
         tag_attribute = None
         try:
             self.driver.implicitly_wait(self.timeout)
-            tag_attribute = self.driver.find_element_by_xpath(xpath).get_attribute(
-                attribute_name
-            )
+            tag_attribute = self.driver.find_element_by_xpath(xpath).get_attribute(attribute_name)
         except Exception as e:
             print(e)
         return tag_attribute
